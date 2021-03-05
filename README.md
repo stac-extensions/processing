@@ -7,11 +7,14 @@
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
 - **Owner**: @emmanuelmathot
 
-Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced. Overall, it helps to increase traceability and search among processing levels and multiple algorithm versions.
+Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced. \
+Overall, it helps to increase traceability and search among processing levels and multiple algorithm versions.
 
-Often, data items are the result of one or more waterfall processing pipeline. Tracing information such as the processing facility, the algorithm version or the processing date helps in the data version management.
+Often, data items are the result of one or more waterfall processing pipeline. Tracing information such as the processing facility, \
+the algorithm version or the processing date helps in the data version management.
 
-This extension applies to STAC Items and STAC Collections. As these processing information are often closely bound to the Collection level and therefore are shared across all items, it is recommended adding the fields to the corresponding STAC Collection.
+This extension applies to STAC Items and STAC Collections. As these processing information are often closely bound to the Collection level \
+and therefore are shared across all items, it is recommended adding the fields to the corresponding STAC Collection.
 
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
@@ -21,8 +24,9 @@ This extension applies to STAC Items and STAC Collections. As these processing i
 
 ## Item Properties and Collection Fields
 
-* For Items, the fields are placed in the properties. Additionally, STAC allows all Item properties to be used in the Asset Object.
-* For Collections, the fields are placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object) for the `providers` that have the role `producer` or `processor` assigned.
+- For Items, the fields are placed in the properties. Additionally, STAC allows all Item properties to be used in the Asset Object.
+- For Collections, the fields are placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object) \
+for the `providers` that have the role `producer` or `processor` assigned.
 
 | Field Name              | Type                | Description |
 | ----------------------- | ------------------- | ----------- |
@@ -43,9 +47,11 @@ In Items that declare this `processing` extension, it is recommended to add one 
 
 ### Suggested Processing Levels
 
-The `processing:level` is the name that is commonly used to refer to that processing level properties. The table below shows some processing level used by the industry for some data product.
+The `processing:level` is the name that is commonly used to refer to that processing level properties. \
+The table below shows some processing level used by the industry for some data product.
 
-Each level represents a step in the abstraction process by which data relevant to physical information (raw, level 0, level 1) are turned into data relevant to geo physical information (level 2, level 3), and finally turned into data relevant to thematic information (level4)
+Each level represents a step in the abstraction process by which data relevant to physical information (raw, level 0, level 1) \
+are turned into data relevant to geo physical information (level 2, level 3), and finally turned into data relevant to thematic information (level4)
 
 This list is not exhaustive and can be extended with the processing level specific to a data product.
 
@@ -62,8 +68,7 @@ This list is not exhaustive and can be extended with the processing level specif
 
 The [extensions page](https://stac-extensions.github.io/) gives an overview about related extensions. Of particular relevance to processing levels:
 
-* the [Sat Extension Specification](https://github.com/stac-extensions/sat/blob/main/README.md) to describe data collected from a satellite.
-
+- the [Sat Extension Specification](https://github.com/stac-extensions/sat/blob/main/README.md) to describe data collected from a satellite.
 
 ## Relation types
 
@@ -72,5 +77,4 @@ The following types should be used as applicable `rel` types in the
 
 | Type                | Description |
 | ------------------- | ----------- |
-| derived_from     | URL to a STAC Item that was used as input data in the creation of this Item.
- |
+| derived_from     | URL to a STAC Item that was used as input data in the creation of this Item. |
