@@ -1,23 +1,56 @@
 {
-  "stac_version": "1.0.0-rc.1",
-  "stac_extensions": [
-    "collection-assets",
-    "item-assets",
-    "https://stac-extensions.github.io/template/v1.0.0/schema.json"
-  ],
+  "stac_version": "1.0.0-beta.2",
   "type": "Collection",
-  "id": "collection",
-  "title": "A title",
-  "description": "A description",
-  "license": "Apache-2.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/processing/v1.0.0/schema.json"
+  ],
+  "id": "Sentinel2-L2A",
+  "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-2A",
+  "description": "Sentinel-2 is a wide-swath, high-resolution, multi-spectral imaging mission.",
+  "license": "proprietary",
+  "keywords": [
+    "copernicus",
+    "esa",
+    "eu",
+    "msi",
+    "radiance",
+    "sentinel"
+  ],
+  "providers": [
+    {
+      "name": "European Union/ESA/Copernicus",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi",
+      "processing:lineage": "Generation of Level-1C User Product",
+      "processing:level": "L1C",
+      "processing:facility": "Copernicus S2 Processing and Archiving Facility",
+      "processing:software_version": {
+        "IPF-S2L1C": "02.06"
+      }
+    },
+    {
+      "name": "Processing Corp.",
+      "roles": [
+        "processor"
+      ],
+      "processing:lineage": "Generation of Level-2A User Product",
+      "processing:level": "L2A",
+      "processing:software_version": {
+        "Sentinel-2 Toolbox": "8.0.0"
+      }
+    }
+  ],
   "extent": {
     "spatial": {
       "bbox": [
         [
-          172.9,
-          1.3,
-          173,
-          1.4
+          -180,
+          -56,
+          180,
+          83
         ]
       ]
     },
@@ -30,42 +63,44 @@
       ]
     }
   },
-  "template:new_field": "test",
-  "template:xyz": {
-    "x": 1,
-    "y": 2,
-    "z": 3
-  },
-  "template:another_one": [
-    1,
-    2,
-    3
-  ],
-  "assets": {
-    "example": {
-      "href": "https://example.com/examples/file.xyz",
-      "template:new_field": "test"
-    }
-  },
-  "item_assets": {
-    "data": {
-      "template:new_field": "test"
-    }
-  },
   "summaries": {
     "datetime": {
       "minimum": "2015-06-23T00:00:00Z",
       "maximum": "2019-07-10T13:44:56Z"
-    }
+    },
+    "platform": [
+      "sentinel-2a",
+      "sentinel-2b"
+    ],
+    "constellation": [
+      "sentinel-2"
+    ],
+    "instruments": [
+      "msi"
+    ],
+    "gsd": [
+      10,
+      30,
+      60
+    ]
   },
   "links": [
     {
-      "href": "https://example.com/examples/collection.json",
-      "rel": "self"
+      "rel": "self",
+      "href": "https://processing-corp.com/catalog/COPERNICUS_S2.json"
     },
     {
-      "href": "https://example.com/examples/item.json",
-      "rel": "item"
+      "rel": "parent",
+      "href": "https://processing-corp.com/catalog/catalog.json"
+    },
+    {
+      "rel": "root",
+      "href": "https://processing-corp.com/catalog/catalog.json"
+    },
+    {
+      "rel": "license",
+      "href": "https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf",
+      "title": "Legal notice on the use of Copernicus Sentinel Data and Service Information"
     }
   ]
 }
