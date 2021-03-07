@@ -6,14 +6,15 @@
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
 - **Owner**: @emmanuelmathot
+- **History**: [Prior to March 2nd 2021](https://github.com/radiantearth/stac-spec/commits/4a841605ad83a16f45fcb88ed90117d6c77a7f04/extensions/processing)
 
-Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced. \
+Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced.
 Overall, it helps to increase traceability and search among processing levels and multiple algorithm versions.
 
-Often, data items are the result of one or more waterfall processing pipeline. Tracing information such as the processing facility, \
+Often, data items are the result of one or more waterfall processing pipeline. Tracing information such as the processing facility,
 the algorithm version or the processing date helps in the data version management.
 
-This extension applies to STAC Items and STAC Collections. As these processing information are often closely bound to the Collection level \
+This extension applies to STAC Items and STAC Collections. As these processing information are often closely bound to the Collection level
 and therefore are shared across all items, it is recommended adding the fields to the corresponding STAC Collection.
 
 - Examples:
@@ -22,10 +23,10 @@ and therefore are shared across all items, it is recommended adding the fields t
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
-## Item Properties and Collection Fields
+## Item Properties and Collection Provider Fields
 
 - For Items, the fields are placed in the properties. Additionally, STAC allows all Item properties to be used in the Asset Object.
-- For Collections, the fields are placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object) \
+- For Collections, the fields are placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
 for the `providers` that have the role `producer` or `processor` assigned.
 
 | Field Name              | Type                | Description |
@@ -47,34 +48,28 @@ In Items that declare this `processing` extension, it is recommended to add one 
 
 ### Suggested Processing Levels
 
-The `processing:level` is the name that is commonly used to refer to that processing level properties. \
+The `processing:level` is the name that is commonly used to refer to that processing level properties.
 The table below shows some processing level used by the industry for some data product.
 
-Each level represents a step in the abstraction process by which data relevant to physical information (raw, level 0, level 1) \
-are turned into data relevant to geo physical information (level 2, level 3), and finally turned into data relevant to thematic information (level4)
+Each level represents a step in the abstraction process by which data relevant to physical information (raw, level 0, level 1)
+are turned into data relevant to geo physical information (level 2, level 3), and finally turned into data relevant to thematic information (level 4)
 
 This list is not exhaustive and can be extended with the processing level specific to a data product.
 
-| Level Name | Description | Typical data product |
-| ---------- | ----------- | -------------------- |
+| Level Name | Description                                                  | Typical data product                                         |
+| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | RAW        | Data in their original packets, as received from the instrument. | [Sentinel-1 RAW](https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-0-products/raw) |
-| L0         | Reconstructed unprocessed instrument data at full space time resolution with all available supplemental information to be used in subsequent processing (e.g., ephemeris, health and safety) appended. | [Landsat Level 0](https://www.usgs.gov/media/files/landsat-8-level-0-reformatted-data-format-control-book)  |
+| L0         | Reconstructed unprocessed instrument data at full space time resolution with all available supplemental information to be used in subsequent processing (e.g., ephemeris, health and safety) appended. | [Landsat Level 0](https://www.usgs.gov/media/files/landsat-8-level-0-reformatted-data-format-control-book) |
 | L1         | Unpacked, reformatted level 0 data, with all supplemental information to be used in subsequent processing appended. Optional radiometric and geometric correction applied to produce parameters in physical units. Data generally presented as full time/space resolution. A wide variety of sub level products are possible (see below). | [Sentinel-1 Level 1](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/product-types-processing-levels/level-1) [Sentinel-2 L1A](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/product-types/level-1a) |
-| L2          | Retrieved environmental variables (e.g., ocean wave height, soil-moisture, ice concentration) at the same resolution and location as the level 1 source data. A wide variety of sub-level products are possible (see below). | [Sentinel-2 L2A](https://earth.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-2a-processing) |
-| L3          | Data or retrieved environmental variables which have been spatiallyand/or temporally re-sampled (i.e., derived from level 1 or 2 products). Such re-sampling may include averaging and compositing.  A wide variety of sub-level products are possible (see below). | [ENVISAT Level-3](http://envisat.esa.int/level3/), [Sentinel-2 L3](https://s2gm.sentinel-hub.com/) |
-| L4          | Model output or results from analyses of lower level data (i.e.,variables that are not directly measured by the instruments, but are derived from these measurements) |  |
-
-## Extensions
-
-The [extensions page](https://stac-extensions.github.io/) gives an overview about related extensions. Of particular relevance to processing levels:
-
-- the [Sat Extension Specification](https://github.com/stac-extensions/sat/blob/main/README.md) to describe data collected from a satellite.
+| L2         | Retrieved environmental variables (e.g., ocean wave height, soil-moisture, ice concentration) at the same resolution and location as the level 1 source data. A wide variety of sub-level products are possible (see below). | [Sentinel-2 L2A](https://earth.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-2a-processing) |
+| L3         | Data or retrieved environmental variables which have been spatiallyand/or temporally re-sampled (i.e., derived from level 1 or 2 products). Such re-sampling may include averaging and compositing.  A wide variety of sub-level products are possible (see below). | [ENVISAT Level-3](http://envisat.esa.int/level3/), [Sentinel-2 L3](https://s2gm.sentinel-hub.com/) |
+| L4         | Model output or results from analyses of lower level data (i.e.,variables that are not directly measured by the instruments, but are derived from these measurements) | |
 
 ## Relation types
 
 The following types should be used as applicable `rel` types in the
 [Link Object](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#link-object).
 
-| Type                | Description |
-| ------------------- | ----------- |
-| derived_from     | URL to a STAC Item that was used as input data in the creation of this Item. |
+| Type         | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |

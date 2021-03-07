@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/template/v1.0.0/schema.json#",
-  "title": "Template Extension",
-  "description": "STAC Template Extension for STAC Items and STAC Collections.",
-  "oneOf": [
+  "$id": "https://stac-extensions.github.io/processing/v1.0.0/schema.json#",
+  "title": "Processing Extension",
+  "description": "STAC Processing Extension for STAC Items and STAC Collections.",
+  "anyOf": [
     {
       "$comment": "This is the schema for STAC Items.",
       "allOf": [
@@ -21,10 +21,7 @@
             "properties": {
               "allOf": [
                 {
-                  "$comment": "Require fields here for item properties.",
-                  "required": [
-                    "template:new_field"
-                  ]
+                  "$ref": "#/definitions/requirements"
                 },
                 {
                   "$ref": "#/definitions/fields"
@@ -45,12 +42,84 @@
       ]
     },
     {
-      "$comment": "This is the schema for STAC Collections.",
+      "$comment": "This is the schema for STAC Collections (Providers).",
       "allOf": [
         {
           "type": "object",
           "required": [
-            "type"
+            "type",
+            "providers"
+          ],
+          "properties": {
+            "type": {
+              "const": "Collection"
+            },
+            "providers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "oneOf": [
+                  {
+                    "allOf": [
+                      {
+                        "required": [
+                          "roles"
+                        ],
+                        "properties": {
+                          "roles": {
+                            "type": "array",
+                            "contains": {
+                              "enum": [
+                                "producer",
+                                "processor"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "$ref": "#/definitions/requirements"
+                      },
+                      {
+                        "$ref": "#/definitions/fields"
+                      }
+                    ]
+                  },
+                  {
+                    "patternProperties": {
+                      "^(?!processing:)": {}
+                    },
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        }
+      ]
+    },
+    {
+      "$comment": "This is the schema for STAC Collections (Assets).",
+      "allOf": [
+        {
+          "type": "object",
+          "anyOf": [
+            {
+              "required": [
+                "type",
+                "assets"
+              ]
+            },
+            {
+              "required": [
+                "type",
+                "item_assets"
+              ]
+            }
           ],
           "properties": {
             "type": {
@@ -72,9 +141,6 @@
         },
         {
           "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "$ref": "#/definitions/fields"
         }
       ]
     }
@@ -89,48 +155,78 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "https://stac-extensions.github.io/template/v1.0.0/schema.json"
+            "const": "https://stac-extensions.github.io/processing/v1.0.0/schema.json"
           }
         }
       }
     },
+    "requirements": {
+      "anyOf": [
+        {
+          "required": [
+            "processing:lineage"
+          ]
+        },
+        {
+          "required": [
+            "processing:level"
+          ]
+        },
+        {
+          "required": [
+            "processing:facility"
+          ]
+        },
+        {
+          "required": [
+            "processing:software"
+          ]
+        }
+      ]
+    },
     "fields": {
-      "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
       "type": "object",
       "properties": {
-        "template:new_field": {
-          "type": "string"
+        "processing:lineage": {
+          "title": "Processing Lineage Information",
+          "type": "string",
+          "example": "Post Processing GRD"
         },
-        "template:xyz": {
+        "processing:level": {
+          "title": "Processing Level",
+          "type": "string",
+          "examples": [
+            "RAW",
+            "L1",
+            "L1A",
+            "L1B",
+            "L1C",
+            "L2",
+            "L2A",
+            "L3",
+            "L4"
+          ]
+        },
+        "processing:facility": {
+          "title": "Processing Facility",
+          "type": "string",
+          "example": "Copernicus S1 Core Ground Segment - DPA"
+        },
+        "processing:software": {
+          "title": "Processing Software Name / version",
           "type": "object",
-          "required": [
-            "x",
-            "y",
-            "z"
-          ],
-          "properties": {
-            "x": {
-              "type": "number"
-            },
-            "y": {
-              "type": "number"
-            },
-            "z": {
-              "type": "number"
+          "patternProperties": {
+            ".{1,}": {
+              "type": "string"
             }
-          }
-        }, 
-        "template:another_one": {
-          "type": "array", 
-          "items": {
-            "type": "number"
+          },
+          "example": {
+            "Sentinel-1 IPF": "002.71"
           }
         }
       },
       "patternProperties": {
-        "^(?!template:)": {
-          "$comment": "Above, change `template` to the prefix of this extension",
-        }
+        "^(?!processing:)": {}
       },
       "additionalProperties": false
     }

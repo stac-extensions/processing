@@ -1,10 +1,10 @@
 {
+  "stac_version": "1.0.0-rc.1",
   "stac_extensions": [
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
     "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
     "https://stac-extensions.github.io/processing/v1.0.0/schema.json"
   ],
-  "stac_version": "1.0.0-beta.2",
   "id": "S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF",
   "properties": {
     "datetime": "2016-08-22T18:28:23.368922Z",
@@ -44,7 +44,7 @@
       ],
       "title": "SAFE Manifest",
       "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/manifest.safe",
-      "created": "2016-08-23T00:30:33.319454"
+      "created": "2016-08-23T00:30:33Z"
     },
     "quick-look": {
       "type": "image/png",

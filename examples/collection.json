@@ -1,21 +1,13 @@
 {
-  "stac_version": "1.0.0-beta.2",
-  "type": "Collection",
+  "stac_version": "1.0.0-rc.1",
   "stac_extensions": [
     "https://stac-extensions.github.io/processing/v1.0.0/schema.json"
   ],
+  "type": "Collection",
   "id": "Sentinel2-L2A",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-2A",
   "description": "Sentinel-2 is a wide-swath, high-resolution, multi-spectral imaging mission.",
   "license": "proprietary",
-  "keywords": [
-    "copernicus",
-    "esa",
-    "eu",
-    "msi",
-    "radiance",
-    "sentinel"
-  ],
   "providers": [
     {
       "name": "European Union/ESA/Copernicus",
@@ -27,7 +19,7 @@
       "processing:lineage": "Generation of Level-1C User Product",
       "processing:level": "L1C",
       "processing:facility": "Copernicus S2 Processing and Archiving Facility",
-      "processing:software_version": {
+      "processing:software": {
         "IPF-S2L1C": "02.06"
       }
     },
@@ -38,9 +30,15 @@
       ],
       "processing:lineage": "Generation of Level-2A User Product",
       "processing:level": "L2A",
-      "processing:software_version": {
+      "processing:software": {
         "Sentinel-2 Toolbox": "8.0.0"
       }
+    },
+    {
+      "name": "Storage Provider, Inc.",
+      "roles": [
+        "host"
+      ]
     }
   ],
   "extent": {
