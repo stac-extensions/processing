@@ -6,7 +6,6 @@
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
 - **Owner**: @emmanuelmathot
-- **History**: [Prior to March 2nd 2021](https://github.com/radiantearth/stac-spec/commits/4a841605ad83a16f45fcb88ed90117d6c77a7f04/extensions/processing)
 
 Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced.
 Overall, it helps to increase traceability and search among processing levels and multiple algorithm versions.
