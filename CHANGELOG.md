@@ -24,6 +24,5 @@ Initial independent release, see [previous history](https://github.com/radiantea
 
 - `processing:lineage` now allows CommonMark for rich-text representation ([#950](https://github.com/radiantearth/stac-spec/issues/950))
 
-
 [Unreleased]: <https://github.com/stac-extensions/processing/compare/v1.0.0...HEAD>
-[v1.0.0]: <https://github.com/stac-extensions/processing/tree/v1.0.0>]
+[v1.0.0]: <https://github.com/stac-extensions/processing/tree/v1.0.0>
