@@ -30,6 +30,7 @@ for the `providers` that have the role `producer` or `processor` assigned.
 
 | Field Name              | Type                | Description |
 | ----------------------- | ------------------- | ----------- |
+| processing:expression   | [Expression Object](#expression-object) | An expression or processing chain that describes how the data has been processed. |
 | processing:lineage      | string              | Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | processing:level        | string              | The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels). |
 | processing:facility     | string              | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
@@ -63,6 +64,21 @@ This list is not exhaustive and can be extended with the processing level specif
 | L2         | Retrieved environmental variables (e.g., ocean wave height, soil-moisture, ice concentration) at the same resolution and location as the level 1 source data. A wide variety of sub-level products are possible (see below). | [Sentinel-2 L2A](https://earth.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-2a-processing) |
 | L3         | Data or retrieved environmental variables which have been spatiallyand/or temporally re-sampled (i.e., derived from level 1 or 2 products). Such re-sampling may include averaging and compositing.  A wide variety of sub-level products are possible (see below). | [ENVISAT Level-3](http://envisat.esa.int/level3/), [Sentinel-2 L3](https://s2gm.sentinel-hub.com/) |
 | L4         | Model output or results from analyses of lower level data (i.e.,variables that are not directly measured by the instruments, but are derived from these measurements) | |
+
+### Expression Object
+
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| format     | string | **REQUIRED** The type of the expression that is specified in the `expression` property. |
+| expression | \*     | **REQUIRED** An expression compliant with the `format` specified. The expression can be any data type and depends on the `format` given, e.g. string or object. |
+
+Potential expression formats with examples:
+
+| Format      | Type   | Description | Example |
+| ----------- | ------ | ----------- |
+| `gdal-calc` | string | A [`gdal_calc.py`](https://gdal.org/programs/gdal_calc.html) expression based on numpy syntax. | `A*logical_or(A<=177,A>=185)` |
+| `openeo`    | object | [openEO process](https://openeo.org/documentation/1.0/developers/api/reference.html#section/Processes) | [Example](https://raw.githubusercontent.com/Open-EO/openeo-processes/1.0.0/normalized_difference.json) |
+| `rio-calc`  | string | A [rio-calc](https://rasterio.readthedocs.io/en/latest/topics/calc.html) (RasterIO) expression | `(b4-b1)/(b4+b1)` |
 
 ## Relation types
 

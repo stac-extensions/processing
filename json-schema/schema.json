@@ -164,6 +164,11 @@
       "anyOf": [
         {
           "required": [
+            "processing:expression"
+          ]
+        },
+        {
+          "required": [
             "processing:lineage"
           ]
         },
@@ -187,6 +192,22 @@
     "fields": {
       "type": "object",
       "properties": {
+        "processing:expression": {
+          "title": "Processing Expression",
+          "type": "object",
+          "required": [
+            "format",
+            "expression"
+          ],
+          "properties": {
+            "format": {
+              "type": "string"
+            },
+            "expression": {
+              "description": "Any data type, depending on the format chosen."
+            }
+          }
+        },
         "processing:lineage": {
           "title": "Processing Lineage Information",
           "type": "string",
