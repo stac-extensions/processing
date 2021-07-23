@@ -30,7 +30,7 @@ for the `providers` that have the role `producer` or `processor` assigned.
 
 | Field Name              | Type                | Description |
 | ----------------------- | ------------------- | ----------- |
-| processing:expression   | [Expression Object](#expression-object) | An expression or processing chain that describes how the data has been processed. |
+| processing:expression   | [Expression Object](#expression-object) | An expression or processing chain that describes how the data has been processed. Alternatively, you can also link to a processing chain with the relation type `processing-expression` (see below). |
 | processing:lineage      | string              | Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | processing:level        | string              | The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels). |
 | processing:facility     | string              | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
@@ -85,9 +85,10 @@ Potential expression formats with examples:
 The following types should be used as applicable `rel` types in the
 [Link Object](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#link-object).
 
-| Type         | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
+| Type                  | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| derived_from          | URL to a STAC Item that was used as input data in the creation of this Item. |
+| processing-expression | A processing chain (or script) that describes how the data has been processed. |
 
 ## Contributing
 
