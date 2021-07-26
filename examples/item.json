@@ -71,7 +71,6 @@
       ],
       "title": "IW VV Amplitude pixel values",
       "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/s1a-iw-grd-vv-20160822t182823-20160822t182848-012717-013ffe-001.tiff",
-      "gsd": 0,
       "sar:polarizations": [
         "VV"
       ]
@@ -94,7 +93,6 @@
       ],
       "title": "IW VH Amplitude pixel values",
       "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/s1a-iw-grd-vh-20160822t182823-20160822t182848-012717-013ffe-002.tiff",
-      "gsd": 0,
       "sar:polarizations": [
         "VH"
       ]
@@ -106,7 +104,6 @@
       ],
       "title": "Calibration VV IW",
       "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/calibration/calibration-s1a-iw-grd-vv-20160822t182823-20160822t182848-012717-013ffe-001.xml",
-      "gsd": 0,
       "sar:polarizations": [
         "VV"
       ]
@@ -118,7 +115,6 @@
       ],
       "title": "Calibration VH IW",
       "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/calibration/calibration-s1a-iw-grd-vh-20160822t182823-20160822t182848-012717-013ffe-002.xml",
-      "gsd": 0,
       "sar:polarizations": [
         "VH"
       ]
