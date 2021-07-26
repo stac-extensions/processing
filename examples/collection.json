@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.0.0",
   "stac_extensions": [
     "https://stac-extensions.github.io/processing/v1.0.0/schema.json"
   ],
@@ -80,6 +80,10 @@
       10,
       30,
       60
+    ],
+    "processing:level": [
+      "L1C",
+      "L2A"
     ]
   },
   "links": [

@@ -12,11 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Updated examples to STAC 1.0.0
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- The JSON Schema is more strict and should not have issues with missing required fields in Collections any longer [#3](https://github.com/stac-extensions/processing/issues/3)
 
 ## [v1.0.0] - 2021-03-08
 
