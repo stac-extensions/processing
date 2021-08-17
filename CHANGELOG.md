@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `processing:expression` to describe how the data has been processed.
+- Relation type `processing-expression` to externally describe how the data has been processed.
 
 ### Changed
 
