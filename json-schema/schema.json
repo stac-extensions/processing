@@ -191,7 +191,7 @@
       }
     },
     "require_any_field": {
-      "$comment": "Please list all fields here so that we can force the existance of one of them in other parts of the schemas.",
+      "$comment": "Please list all fields here so that we can force the existence of one of them in other parts of the schemas.",
       "anyOf": [
         {"required": ["processing:expression"]},
         {"required": ["processing:lineage"]},
