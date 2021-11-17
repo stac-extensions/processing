@@ -47,6 +47,7 @@
       "type": "object",
       "allOf": [
         {
+          "type": "object",
           "required": [
             "type"
           ],
@@ -77,6 +78,7 @@
                   {
                     "allOf": [
                       {
+                        "type": "object",
                         "required": [
                           "roles"
                         ],
@@ -112,6 +114,7 @@
           }
         },
         {
+          "type": "object",
           "$comment": "This validates the fields in Collection Assets, but does not require them.",
           "required": [
             "assets"
@@ -137,6 +140,7 @@
           }
         },
         {
+          "type": "object",
           "$comment": "This is the schema for the fields in Item Asset Definitions. It doesn't require any fields.",
           "required": [
             "item_assets"
@@ -162,6 +166,7 @@
           }
         },
         {
+          "type": "object",
           "$comment": "This is the schema for the fields in Summaries. By default, only checks the existance of the properties, but not the schema of the summaries.",
           "required": [
             "summaries"
@@ -193,11 +198,11 @@
     "require_any_field": {
       "$comment": "Please list all fields here so that we can force the existence of one of them in other parts of the schemas.",
       "anyOf": [
-        {"required": ["processing:expression"]},
-        {"required": ["processing:lineage"]},
-        {"required": ["processing:level"]},
-        {"required": ["processing:facility"]},
-        {"required": ["processing:software"]}
+        {"type": "object", "required": ["processing:expression"]},
+        {"type": "object", "required": ["processing:lineage"]},
+        {"type": "object", "required": ["processing:level"]},
+        {"type": "object", "required": ["processing:facility"]},
+        {"type": "object", "required": ["processing:software"]}
       ]
     },
     "fields": {
