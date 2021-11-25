@@ -223,7 +223,9 @@
         "processing:lineage": {
           "title": "Processing Lineage Information",
           "type": "string",
-          "example": "Post Processing GRD"
+          "examples": [
+            "Post Processing GRD"
+          ]
         },
         "processing:level": {
           "title": "Processing Level",
@@ -243,7 +245,9 @@
         "processing:facility": {
           "title": "Processing Facility",
           "type": "string",
-          "example": "Copernicus S1 Core Ground Segment - DPA"
+          "examples": [
+            "Copernicus S1 Core Ground Segment - DPA"
+          ]
         },
         "processing:software": {
           "title": "Processing Software Name / version",
@@ -253,9 +257,11 @@
               "type": "string"
             }
           },
-          "example": {
-            "Sentinel-1 IPF": "002.71"
-          }
+          "examples": [
+            {
+              "Sentinel-1 IPF": "002.71"
+            }
+          ]
         }
       },
       "patternProperties": {
