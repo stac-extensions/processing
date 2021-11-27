@@ -40,7 +40,7 @@ For Items:
 
 For Collections:
 - The fields are usually placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
-for the `providers` that have the role `producer` or `processor` assigned. The don't need to be provided for all providers of the respective role.
+for the `providers` that have the role `producer` or `processor` assigned. They don't need to be provided for all providers of the respective role.
 - The fields can also be used in summaries, assets or Item asset definitions.
 
 If the extension is given in the `stac_extensions` list, at least one of the fields must be specified in any of the given places listed above.
