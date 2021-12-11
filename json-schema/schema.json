@@ -59,6 +59,9 @@
         },
         {
           "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/providers"
         }
       ],
       "anyOf": [
@@ -68,50 +71,11 @@
           "required": [
             "providers"
           ],
-          "properties": {
-            "providers": {
-              "type": "array",
-              "minItems": 1,
-              "items": {
-                "type": "object",
-                "oneOf": [
-                  {
-                    "allOf": [
-                      {
-                        "type": "object",
-                        "required": [
-                          "roles"
-                        ],
-                        "properties": {
-                          "roles": {
-                            "type": "array",
-                            "contains": {
-                              "enum": [
-                                "producer",
-                                "processor"
-                              ]
-                            }
-                          }
-                        }
-                      },
-                      {
-                        "$ref": "#/definitions/require_any_field"
-                      },
-                      {
-                        "$ref": "#/definitions/fields"
-                      }
-                    ]
-                  },
-                  {
-                    "patternProperties": {
-                      "^(?!processing:)": {}
-                    },
-                    "additionalProperties": false
-                  }
-                ]
-              }
+          "allOf": [
+            {
+              "$ref": "#/definitions/providers"
             }
-          }
+          ]
         },
         {
           "type": "object",
@@ -273,6 +237,54 @@
         "^(?!processing:)": {}
       },
       "additionalProperties": false
+    },
+    "providers": {
+      "$comment": "Validate fields in Collection Providers.",
+      "type": "object",
+      "properties": {
+        "providers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "oneOf": [
+              {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      "roles"
+                    ],
+                    "properties": {
+                      "roles": {
+                        "type": "array",
+                        "contains": {
+                          "enum": [
+                            "producer",
+                            "processor"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "$ref": "#/definitions/require_any_field"
+                  },
+                  {
+                    "$ref": "#/definitions/fields"
+                  }
+                ]
+              },
+              {
+                "patternProperties": {
+                  "^(?!processing:)": {}
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
     }
   }
 }
