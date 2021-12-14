@@ -22,4 +22,22 @@ describe('Item example', () => {
 
 		expect(valid).toBeTruthy();
 	});
+
+	it('should fail validation when processing expression is invalid', async () => {
+		// given
+		example.properties = {'processing:expression': null};
+
+		// when
+		let valid = validate(example);
+
+		// then
+		expect(valid).toBeFalsy();
+		expect(
+			validate.errors.some(
+				(error) =>
+					error.instancePath === '/properties/processing:expression'
+					&& error.message === 'must be object',
+			)
+		).toBeTruthy();
+	});
 });
