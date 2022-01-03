@@ -34,17 +34,18 @@ and therefore are shared across all items, it is recommended adding the fields t
 
 These fields can be used in a variety of places:
 
-For Items:
-- The fields are placed in the properties.
-- Additionally, STAC allows all fields to be used in the Asset Object.
+1. Items:
+   - The fields are placed in the properties. At least one field is required to be present.
+   - Additionally, STAC allows all fields to be used in the Asset Object.
 
-For Collections:
-- The fields are usually placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
-for the `providers` that have the role `producer` or `processor` assigned. They don't need to be provided for all providers of the respective role.
-- The fields can also be used in summaries, assets or Item asset definitions.
-
-If the extension is given in the `stac_extensions` list, at least one of the fields must be specified in any of the given places listed above.
-Please note that the JSON Schema might not be able to validate this requirement in all cases due to limitations in JSON Schema.
+2. Collections:
+   - The fields are usually placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
+     for the `providers` that have the role `producer` or `processor` assigned.
+     They don't need to be provided for all providers of the respective role.
+   - The fields can also be used in `summaries`, Collection `assets` or Item asset definitions (`item_assets`).
+    
+   If the extension is given in the `stac_extensions` list, at least one of the fields must be specified in any of the given places listed above.
+   Please note that the JSON Schema is not be able to validate the values of Collection summaries.
 
 ### Processing Date Time
 

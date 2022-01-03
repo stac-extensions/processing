@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- The JSON Schema is more strict and should not have issues with missing required fields in Collections any longer [#3](https://github.com/stac-extensions/processing/issues/3)
+- The JSON Schema is more strict and should not have issues with missing required fields in Collections any longer [#3](https://github.com/stac-extensions/processing/issues/3), [#8](https://github.com/stac-extensions/processing/issues/8), [#16](https://github.com/stac-extensions/processing/issues/16)
 
 ## [v1.0.0] - 2021-03-08
 
