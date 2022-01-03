@@ -24,10 +24,6 @@ and therefore are shared across all items, it is recommended adding the fields t
 
 ## Item Properties and Collection Provider Fields
 
-- For Items, the fields are placed in the properties. Additionally, STAC allows all Item properties to be used in the Asset Object.
-- For Collections, the fields are placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
-for the `providers` that have the role `producer` or `processor` assigned.
-
 | Field Name              | Type                | Description |
 | ----------------------- | ------------------- | ----------- |
 | processing:expression   | [Expression Object](#expression-object) | An expression or processing chain that describes how the data has been processed. Alternatively, you can also link to a processing chain with the relation type `processing-expression` (see below). |
@@ -36,7 +32,19 @@ for the `providers` that have the role `producer` or `processor` assigned.
 | processing:facility     | string              | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
 | processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more softwares that produced the data. For example, `"Sentinel-1 IPF":"002.71"` for the software that produces Sentinel-1 satellites data. |
 
-*At least one of the fields must be specified.*
+These fields can be used in a variety of places:
+
+For Items:
+- The fields are placed in the properties.
+- Additionally, STAC allows all fields to be used in the Asset Object.
+
+For Collections:
+- The fields are usually placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
+for the `providers` that have the role `producer` or `processor` assigned. They don't need to be provided for all providers of the respective role.
+- The fields can also be used in summaries, assets or Item asset definitions.
+
+If the extension is given in the `stac_extensions` list, at least one of the fields must be specified in any of the given places listed above.
+Please note that the JSON Schema might not be able to validate this requirement in all cases due to limitations in JSON Schema.
 
 ### Processing Date Time
 
