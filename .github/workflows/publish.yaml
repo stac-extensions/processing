@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Inject env variables
         uses: rlespinasse/github-slug-action@v3.x
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.0.2
       - name: deploy JSON Schema for version ${{ env.GITHUB_REF_SLUG }}
         uses: peaceiris/actions-gh-pages@v3
         with:
