@@ -4,7 +4,7 @@
 - **Identifier:** <https://stac-extensions.github.io/processing/v1.1.0/schema.json>
 - **Field Name Prefix:** processing
 - **Scope:** Item, Collection
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Candidate
 - **Owner**: @emmanuelmathot
 
 Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced.
