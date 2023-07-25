@@ -17,14 +17,7 @@
           "const": "Feature"
         },
         "properties": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/require_any_field"
-            },
-            {
-              "$ref": "#/definitions/fields"
-            }
-          ]
+          "$ref": "#/definitions/fields"
         },
         "assets": {
           "$comment": "This validates the fields in Item Assets, but does not require them.",
@@ -75,9 +68,7 @@
       "allOf": [
         {
           "$ref": "#/definitions/stac_extensions"
-        }
-      ],
-      "anyOf": [
+        },
         {
           "$comment": "Requires at least one provider to contain processing fields.",
           "type": "object",
@@ -108,7 +99,7 @@
                     }
                   },
                   {
-                    "$ref": "#/definitions/require_any_field"
+                    "$ref": "#/definitions/fields"
                   }
                 ]
               }
@@ -118,18 +109,11 @@
         {
           "$comment": "Requires at least one asset to contain processing fields.",
           "type": "object",
-          "required": [
-            "assets"
-          ],
           "properties": {
             "assets": {
               "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "$ref": "#/definitions/require_any_field"
-                  }
-                }
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
               }
             }
           }
@@ -137,18 +121,11 @@
         {
           "$comment": "Requires at least one item asset definition to contain processing fields.",
           "type": "object",
-          "required": [
-            "item_assets"
-          ],
           "properties": {
             "item_assets": {
               "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "$ref": "#/definitions/require_any_field"
-                  }
-                }
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
               }
             }
           }
@@ -156,12 +133,46 @@
         {
           "type": "object",
           "$comment": "Requires at least one summary to be a processing field.",
-          "required": [
-            "summaries"
-          ],
           "properties": {
             "summaries": {
-              "$ref": "#/definitions/require_any_field"
+              "type": "object",
+              "properties": {
+                "processing:expression": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/fields/properties/processing:expression"
+                  },
+                  "minItems": 1
+                },
+                "processing:facility": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/fields/properties/processing:facility"
+                  },
+                  "minItems": 1
+                },
+                "processing:level": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/fields/properties/processing:level"
+                  },
+                  "minItems": 1
+                },
+                "processing:lineage": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/fields/properties/processing:lineage"
+                  },
+                  "minItems": 1
+                },
+                "processing:software": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/fields/properties/processing:software"
+                  },
+                  "minItems": 1
+                }
+              }
             }
           }
         }
@@ -199,15 +210,6 @@
           }
         }
       }
-    },
-    "require_any_field": {
-      "anyOf": [
-        {"type": "object", "required": ["processing:expression"]},
-        {"type": "object", "required": ["processing:lineage"]},
-        {"type": "object", "required": ["processing:level"]},
-        {"type": "object", "required": ["processing:facility"]},
-        {"type": "object", "required": ["processing:software"]}
-      ]
     },
     "fields": {
       "type": "object",
