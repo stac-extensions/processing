@@ -94,10 +94,11 @@ Potential expression formats with examples:
 The following types should be used as applicable `rel` types in the
 [Link Object](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#link-object).
 
-| Type                  | Description                                                  |
-| --------------------- | ------------------------------------------------------------ |
-| derived_from          | URL to a STAC Item that was used as input data in the creation of this Item. |
+| Type                  | Description                                                                    |
+| --------------------- | ------------------------------------------------------------------------------ |
+| derived_from          | URL to a STAC Item that was used as input data in the creation of this Item.   |
 | processing-expression | A processing chain (or script) that describes how the data has been processed. |
+| via                   | URL to any resource representing the processing execution (e.g. OGC Process API). |
 
 ## Contributing
 
