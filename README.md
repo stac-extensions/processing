@@ -18,7 +18,9 @@ and therefore are shared across all items, it is recommended adding the fields t
 
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
-  - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
+  - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC
+  - Collection example with tiling object:
+    - [`collection-modis-landcover-houston.json`](./examples/collection-modis-landcover-houston.json)
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
@@ -88,6 +90,9 @@ Potential expression formats with examples:
 | `gdal-calc` | string | A [`gdal_calc.py`](https://gdal.org/programs/gdal_calc.html) expression based on numpy syntax. | `A*logical_or(A<=177,A>=185)` |
 | `openeo`    | object | [openEO process](https://openeo.org/documentation/1.0/developers/api/reference.html#section/Processes) | [Example](https://raw.githubusercontent.com/Open-EO/openeo-processes/1.2.0/normalized_difference.json) |
 | `rio-calc`  | string | A [rio-calc](https://rasterio.readthedocs.io/en/latest/topics/calc.html) (RasterIO) expression | `(b4-b1)/(b4+b1)` |
+| `tiling` | object | key value pairs describing how to tile the data, for example `{ "colormap": "viridis", "rescale": [0,1], "resampling": "nearest" }`. See [`collection-modis-landcover-houston.json`](./examples/collection-modis-landcover-houston.json) for an example. |
+
+[titiler](https://github.com/developmentseed/titiler/) is an example dynamic tiling application but the tiling object should be generic enough to be used with other tile servers.
 
 ## Relation types
 

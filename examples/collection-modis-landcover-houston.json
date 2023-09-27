@@ -1,0 +1,179 @@
+{
+  "id": "landcover_Z_f_2019_cog",
+  "bbox": [
+    -95.99531873393823,
+    29.07716802830657,
+    -94.29534689027045,
+    30.39936449861516
+  ],
+  "type": "Feature",
+  "links": [
+    {
+      "rel": "collection",
+      "type": "application/json",
+      "href": "https://staging-stac.delta-backend.com/collections/houston-landcover"
+    },
+    {
+      "rel": "parent",
+      "type": "application/json",
+      "href": "https://staging-stac.delta-backend.com/collections/houston-landcover"
+    },
+    {
+      "rel": "root",
+      "type": "application/json",
+      "href": "https://staging-stac.delta-backend.com/"
+    },
+    {
+      "rel": "self",
+      "type": "application/geo+json",
+      "href": "https://staging-stac.delta-backend.com/collections/houston-landcover/items/landcover_Z_f_2019_cog"
+    }
+  ],
+  "assets": {
+    "cog_default": {
+      "href": "s3://veda-data-store-staging/houston-landcover/landcover_Z_f_2019_cog.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Default COG Layer",
+      "description": "Cloud optimized default layer to display on map",
+      "raster:bands": [
+        {
+          "scale": 1,
+          "nodata": -999,
+          "offset": 0,
+          "sampling": "area",
+          "data_type": "float32",
+          "histogram": {
+            "max": 95,
+            "min": 11,
+            "count": 11,
+            "buckets": [
+              92542,
+              221312,
+              3652,
+              107193,
+              11793,
+              0,
+              0,
+              19862,
+              249362,
+              150800
+            ]
+          },
+          "statistics": {
+            "mean": 54.547851995759565,
+            "stddev": 30.797947880218707,
+            "maximum": 95,
+            "minimum": 11,
+            "valid_percent": 91.61461185651699
+          }
+        }
+      ]
+    }
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -95.99531873393823,
+          29.07716802830657
+        ],
+        [
+          -94.29534689027045,
+          29.07716802830657
+        ],
+        [
+          -94.29534689027045,
+          30.39936449861516
+        ],
+        [
+          -95.99531873393823,
+          30.39936449861516
+        ],
+        [
+          -95.99531873393823,
+          29.07716802830657
+        ]
+      ]
+    ]
+  },
+  "collection": "houston-landcover",
+  "properties": {
+    "datetime": "2019-01-01T00:00:00+00:00",
+    "proj:bbox": [
+      -10686150,
+      3364710,
+      -10496910,
+      3533370
+    ],
+    "proj:epsg": 3395,
+    "proj:shape": [
+      5622,
+      6308
+    ],
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -10686150,
+            3364710
+          ],
+          [
+            -10496910,
+            3364710
+          ],
+          [
+            -10496910,
+            3533370
+          ],
+          [
+            -10686150,
+            3533370
+          ],
+          [
+            -10686150,
+            3364710
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      30,
+      0,
+      -10686150,
+      0,
+      -30,
+      3533370,
+      0,
+      0,
+      1
+    ]
+  },
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json"
+  ],
+  "virtual:assets": {
+    "default_tiles": {
+      "href": [
+        "#cog_default"
+      ],
+      "title": "Default Tiles",
+      "processing:expression": {
+        "format": "tiling",
+        "expression": {
+          "rescale": [-215,215],
+          "resampling": "bilinear",
+          "colormap_name": "rdbu_r",
+          "bidx": 1
+        }
+      }
+    }
+  }
+}
