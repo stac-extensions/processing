@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `processing-execution` relation type to link to the processing execution that produced the data.
+
 ## [v1.1.0] - 2022-01-07
 
 ### Added

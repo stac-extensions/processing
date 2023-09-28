@@ -35,7 +35,14 @@
       "Sentinel-1 IPF": "002.71"
     }
   },
-  "links": [],
+  "links": [
+    {
+      "title": "GRD Post Processing (90AF)",
+      "rel": "processing-execution",
+      "href": "https://api.example.com/processing/s1-grd-l1c/jobs/90AF",
+      "type": "application/json"
+    }
+  ],
   "assets": {
     "manifest": {
       "type": "text/xml",
