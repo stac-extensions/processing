@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `processing:version` to describe the primary software version of workflow version that produced the data
-- `processing:datetime` to describe when the processing happened
+- `processing:version` field to describe the primary software version of workflow version that produced the data
+- `processing:datetime` field to describe when the processing happened
+- `processing-execution` relation type to link to the processing execution that produced the data.
 
 ### Changed
 

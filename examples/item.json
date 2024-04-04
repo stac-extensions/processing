@@ -37,7 +37,14 @@
     "processing:version": "002.71",
     "processing:datetime": "2016-08-23T00:30:33Z"
   },
-  "links": [],
+  "links": [
+    {
+      "title": "GRD Post Processing (90AF)",
+      "rel": "processing-execution",
+      "href": "https://api.example.com/processing/s1-grd-l1c/jobs/90AF",
+      "type": "application/json"
+    }
+  ],
   "assets": {
     "manifest": {
       "type": "text/xml",
