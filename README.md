@@ -83,11 +83,14 @@ This list is not exhaustive and can be extended with the processing level specif
 
 Potential expression formats with examples:
 
-| Format      | Type   | Description | Example |
-| ----------- | ------ | ----------- | ------- |
-| `gdal-calc` | string | A [`gdal_calc.py`](https://gdal.org/programs/gdal_calc.html) expression based on numpy syntax. | `A*logical_or(A<=177,A>=185)` |
+| Format      | Type   | Description                                                                                            | Example |
+|-------------| ------ |--------------------------------------------------------------------------------------------------------| ------- |
+| `gdal-calc` | string | A [`gdal_calc.py`](https://gdal.org/programs/gdal_calc.html) expression based on numpy syntax.         | `A*logical_or(A<=177,A>=185)` |
 | `openeo`    | object | [openEO process](https://openeo.org/documentation/1.0/developers/api/reference.html#section/Processes) | [Example](https://raw.githubusercontent.com/Open-EO/openeo-processes/1.2.0/normalized_difference.json) |
-| `rio-calc`  | string | A [rio-calc](https://rasterio.readthedocs.io/en/latest/topics/calc.html) (RasterIO) expression | `(b4-b1)/(b4+b1)` |
+| `rio-calc`  | string | A [rio-calc](https://rasterio.readthedocs.io/en/latest/topics/calc.html) (RasterIO) expression         | `(b4-b1)/(b4+b1)` |
+| `python`    | string | A Python entry point reference.                                                                        | `my_package.my_module:my_processing_function` or `my_package.my_module:MyClass.my_method`            |
+| `docker`    | string | An URI with image and tag to a Docker.                                                                 | `ghcr.io/NAMESPACE/IMAGE_NAME:latest`                                                                |
+| `uri`       | string | An URI to some binary or script.                                                                       | `{"href": "https://raw.githubusercontent.com/ORG/REPO/TAG/package/cli.py", "type": "text/x-python"}` |
 
 ## Relation types
 
