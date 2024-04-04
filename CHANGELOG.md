@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `processing:version` to describe the primary software version of workflow version that produced the data
+- `processing:datetime` to describe when the processing happened
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
 ## [v1.1.0] - 2022-01-07
 
 ### Added

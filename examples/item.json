@@ -33,7 +33,9 @@
     "processing:facility": "Copernicus S1 Core Ground Segment - DPA",
     "processing:software": {
       "Sentinel-1 IPF": "002.71"
-    }
+    },
+    "processing:version": "002.71",
+    "processing:datetime": "2016-08-23T00:30:33Z"
   },
   "links": [],
   "assets": {

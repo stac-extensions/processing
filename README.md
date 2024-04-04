@@ -30,7 +30,9 @@ and therefore are shared across all items, it is recommended adding the fields t
 | processing:lineage      | string              | Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | processing:level        | string              | The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels). |
 | processing:facility     | string              | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
-| processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more softwares that produced the data. For example, `"Sentinel-1 IPF":"002.71"` for the software that produces Sentinel-1 satellites data. |
+| processing:datetime     | string              | Processing date and time of the corresponding data formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6), in UTC. |
+| processing:version      | string              | The version of the primary processing software or processing chain that produced the data. For example, this could be the processing baseline for the Sentinel missions. |
+| processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more applications or libraries that were involved during the production of the data for provenance purposes. |
 
 These fields can be used in a variety of places:
 
@@ -49,7 +51,9 @@ These fields can be used in a variety of places:
 
 ### Processing Date Time
 
-The time of the processing is directly specified via the `created` properties of the target asset as specified in the [STAC Common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#date-and-time)
+The time of the processing can be specified as a global field in `processing:datetime`,
+but it can also be specified directly and individually via the `created` properties of the target asset
+as specified in the [STAC Common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#date-and-time).
 
 ### Linking the Items
 
