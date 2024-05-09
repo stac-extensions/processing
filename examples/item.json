@@ -3,7 +3,7 @@
   "stac_extensions": [
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
     "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/processing/v1.1.0/schema.json"
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json"
   ],
   "id": "S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF",
   "properties": {

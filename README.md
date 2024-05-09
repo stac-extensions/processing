@@ -1,7 +1,7 @@
 # Processing Extension Specification
 
 - **Title:** Processing
-- **Identifier:** <https://stac-extensions.github.io/processing/v1.1.0/schema.json>
+- **Identifier:** <https://stac-extensions.github.io/processing/v1.2.0/schema.json>
 - **Field Name Prefix:** processing
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Candidate
