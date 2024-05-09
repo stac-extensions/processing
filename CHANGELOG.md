@@ -8,7 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `processing:version` field to describe the primary software version of workflow version that produced the data
+- `processing:datetime` field to describe when the processing happened
 - `processing-execution` relation type to link to the processing execution that produced the data.
+- `processing-software` relation type to link to the processing execution that produced the data.
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
 
 ## [v1.1.0] - 2022-01-07
 
