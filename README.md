@@ -138,6 +138,7 @@ The following types should be used as applicable `rel` types in the
 | processing-expression | A processing chain (or script) that describes how the data has been processed.    |
 | processing-execution  | URL to any resource representing the processing execution (e.g. OGC Process API). |
 | processing-software   | URL to any resource that identifies the software and versions used for processing the data, e.g. a `Pipfile.lock` (Python) or `package-lock.json` (NodeJS). |
+| processing-validation | URL to any kind of validation that has been applied after processing, e.g. a validation report or a script used for validation. |
 
 ## Contributing
 
