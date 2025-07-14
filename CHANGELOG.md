@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Relation type `processing-validation`
+- Provide more examples of `processing:expression` for `python`, `docker` and `uri` formats.
 
 ### Changed
 
