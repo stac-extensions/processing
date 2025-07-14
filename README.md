@@ -1,7 +1,7 @@
 # Processing Extension Specification
 
 - **Title:** Processing
-- **Identifier:** <https://stac-extensions.github.io/processing/v1.1.0/schema.json>
+- **Identifier:** <https://stac-extensions.github.io/processing/v1.2.0/schema.json>
 - **Field Name Prefix:** processing
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Candidate
@@ -22,7 +22,7 @@ and therefore are shared across all items, it is recommended adding the fields t
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
-## Item Properties and Collection Provider Fields
+## Fields
 
 | Field Name              | Type                | Description |
 | ----------------------- | ------------------- | ----------- |
@@ -30,12 +30,22 @@ and therefore are shared across all items, it is recommended adding the fields t
 | processing:lineage      | string              | Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | processing:level        | string              | The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels). |
 | processing:facility     | string              | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
-| processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more softwares that produced the data. For example, `"Sentinel-1 IPF":"002.71"` for the software that produces Sentinel-1 satellites data. |
+| processing:datetime     | string              | Processing date and time of the corresponding data formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6), in UTC. |
+| processing:version      | string              | The version of the primary processing software or processing chain that produced the data. For example, this could be the processing baseline for the Sentinel missions. |
+| processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more applications or libraries that were involved during the production of the data for provenance purposes. |
 
-These fields can be used in a variety of places:
+The fields in the table above can be used in these parts of STAC documents:
+- [ ] Catalogs
+- [ ] Collections
+- [x] [Collection Provider](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
+- [x] Item Properties (incl. Summaries in Collections)
+- [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
+- [ ] Links
+
+In more detail, the following restrictions apply:
 
 1. Items:
-   - The fields are placed in the properties. At least one field is required to be present.
+   - The fields are usually placed in the properties. At least one field is required to be present.
    - Additionally, STAC allows all fields to be used in the Asset Object.
 
 2. Collections:
@@ -43,17 +53,45 @@ These fields can be used in a variety of places:
      for the `providers` that have the role `producer` or `processor` assigned.
      They don't need to be provided for all providers of the respective role.
    - The fields can also be used in `summaries`, Collection `assets` or Item asset definitions (`item_assets`).
+     Please note that the JSON Schema is not be able to validate the values of Collection summaries.
     
-   If the extension is given in the `stac_extensions` list, at least one of the fields must be specified in any of the given places listed above.
-   Please note that the JSON Schema is not be able to validate the values of Collection summaries.
+If the extension is given in the `stac_extensions` list, at least one of the fields must be specified in any of the given places listed above.
 
 ### Processing Date Time
 
-The time of the processing is directly specified via the `created` properties of the target asset as specified in the [STAC Common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#date-and-time)
+The time of the processing can be specified as a global field in `processing:datetime`,
+but it can also be specified directly and individually via the `created` properties of the target asset
+as specified in the [STAC Common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#date-and-time).
+
+`created` in Item properties describes the STAC metadata creation and in Assets it describes the creation of the data files.
+Thus the timestamps provided in Item Properties for `created` and `processing:datetime` may differ.
+As Item properties are easier to be indexed and used for filtering purposes, `processing:datetime` exists.
+`created` and `processing:datetime` should usually be the same value in Assets and as such `processing:datetime`
+can usually be omitted.
+
+### Version Numbers
+
+Three fields exist for version numbers:
+- `processing:software`
+- `processing:version`
+- `version` (in the [Version extension](https://github.com/stac-extensions/version))
+
+The different fields exist to give data providers more flexibility depending on their needs.
+
+In Item Properties:
+- `processing:version` is useful if a single version number is available for the metadata or data that users should be able to filter on.
+  A popular example for this is the processing baseline in Sentinel missions.
+- `processing:software` is used if the software libraries/tools are important to know, but it's not important to filter on them.
+  They are mostly informative and important to be complete for reporducibility purposes.
+  Thus, the values in the object can not just be version numbers, but also be e.g. tag names, commit hashes or similar.
+  For example, you could expose a simplified version of the `Pipfile.lock` (Python) or `package-lock.json` (NodeJS).
+  If you need more information, you could also link to such files via the relation type `processing-software`.
+- `version` is usually not used in the context of processing and describes the version of the metadata.
 
 ### Linking the Items
 
-In Items that declare this `processing` extension, it is recommended to add one or more [Links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types) with `derived_from` or `via` relationships to the eventual source metadata & data used in the processing. They could be used to trace back the processing history of the dataset.
+In Items that declare this `processing` extension, it is recommended to add one or more [Links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types) with `derived_from` or `via` relationships to the eventual source metadata & data used in the processing.
+They could be used to trace back the processing history of the dataset.
 
 ### Suggested Processing Levels
 
@@ -102,6 +140,8 @@ The following types should be used as applicable `rel` types in the
 | derived_from          | URL to a STAC Item that was used as input data in the creation of this Item.      |
 | processing-expression | A processing chain (or script) that describes how the data has been processed.    |
 | processing-execution  | URL to any resource representing the processing execution (e.g. OGC Process API). |
+| processing-software   | URL to any resource that identifies the software and versions used for processing the data, e.g. a `Pipfile.lock` (Python) or `package-lock.json` (NodeJS). |
+| processing-validation | URL to any kind of validation that has been applied after processing, e.g. a validation report or a script used for validation. |
 
 ## Contributing
 

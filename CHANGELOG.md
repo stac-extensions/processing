@@ -8,8 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Relation type `processing-validation`
+- Provide more examples of `processing:expression` for `python`, `docker` and `uri` formats.
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## [v1.2.0] - 2024-05-09
+
+### Added
+
+- `processing:version` field to describe the primary software version of workflow version that produced the data
+- `processing:datetime` field to describe when the processing happened
 - `processing-execution` relation type to link to the processing execution that produced the data.
-- provide more examples of `processing:expression` for `python`, `docker` and `uri` formats.
+- `processing-software` relation type to link to the processing execution that produced the data.
 
 ## [v1.1.0] - 2022-01-07
 
@@ -34,6 +51,7 @@ Initial independent release, see [previous history](https://github.com/radiantea
 
 - `processing:lineage` now allows CommonMark for rich-text representation ([#950](https://github.com/radiantearth/stac-spec/issues/950))
 
-[Unreleased]: <https://github.com/stac-extensions/processing/compare/v1.1.0...HEAD>
+[Unreleased]: <https://github.com/stac-extensions/processing/compare/v1.2.0...HEAD>
+[v1.2.0]: <https://github.com/stac-extensions/processing/compare/v1.2.0...v1.1.0>
 [v1.1.0]: <https://github.com/stac-extensions/processing/compare/v1.1.0...v1.0.0>
 [v1.0.0]: <https://github.com/stac-extensions/processing/tree/v1.0.0>

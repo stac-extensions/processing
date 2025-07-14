@@ -1,7 +1,7 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/processing/v1.1.0/schema.json"
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json"
   ],
   "type": "Collection",
   "id": "Sentinel2-L2A",
@@ -17,11 +17,9 @@
       ],
       "url": "https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi",
       "processing:lineage": "Generation of Level-1C User Product",
-      "processing:level": "L1C",
+      "processing:level": "L1",
       "processing:facility": "Copernicus S2 Processing and Archiving Facility",
-      "processing:software": {
-        "IPF-S2L1C": "02.06"
-      }
+      "processing:version": "02.06"
     },
     {
       "name": "Processing Corp.",
@@ -82,8 +80,8 @@
       60
     ],
     "processing:level": [
-      "L1C",
-      "L2A"
+      "L1",
+      "L2"
     ]
   },
   "links": [
