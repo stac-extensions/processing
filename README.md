@@ -90,7 +90,7 @@ In Item Properties:
 
 ### Linking the Items
 
-In Items that declare this `processing` extension, it is recommended to add one or more [Links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types) with `derived_from` or `via` relationships to the eventual source metadata & data used in the processing.
+In Items that declare this `processing` extension, it is recommended to add one or more [Links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types) with `derived_from` or `via` relationships to the eventual source data and metadata used in the processing, respectively.
 They could be used to trace back the processing history of the dataset.
 
 ### Suggested Processing Levels
