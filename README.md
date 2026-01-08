@@ -90,13 +90,16 @@ In Item Properties:
 
 ### Linking the Items
 
-In Items that declare this processing extension, it is recommended to add one or more [Links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types) that document lineage, using `derived_from` to point to upstream inputs the data product was derived from, and `via` to point to alternative representations used in the creation of the Item (e.g., an authoritative metadata record used for conversion).
-They could be used to trace back the processing history of the dataset. Note that `derived_from` can point back to different types of metadata, which are distinguished through the media type (`type`):
+In Items that declare this processing extension, it is recommended to add one or more
+[Links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types) that document lineage,
+using `derived_from` to point to upstream inputs the data product was derived from,
+and `via` to point to alternative representations used in the creation of the Item (e.g., an authoritative metadata record used for conversion).
+They could be used to trace back the processing history of the dataset.
+Note that `derived_from` can point back to different types of metadata, which are distinguished through the media type (`type`):
 - `application/geo+json` &rarr; STAC Item
 - `application/json` &rarr; STAC Catalog/Collection; for other JSON metadata, use `application/json; profile=my-other-metadata-standard`.
 - `text/html` &rarr; website
 - Any other media type (e.g. `application/xml`) &rarr; other metadata (e.g. XML)
-
 
 ### Suggested Processing Levels
 
