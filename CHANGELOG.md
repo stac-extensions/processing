@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Relation type `processing-validation`
+- Relation type `source_for` for forward provenance (inverse of `derived_from`)
 
 ### Changed
 
