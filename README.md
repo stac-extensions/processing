@@ -103,9 +103,11 @@ Note that `derived_from` can point back to different types of metadata, which ar
 
 For **forward provenance** (going from a source item to the items derived from it), the `source_for` relation type can be used.
 It is the inverse of `derived_from`: a source item links forward to the items produced from it.
+As for `derived_from`, the media type (`type`) distinguishes the different types of metadata that `source_for` can point to.
 Note that maintaining `source_for` links requires updating the source item every time a new derived item is created,
-which may not always be practical. An alternative for forward discovery is to search for derived items using
-`derived_from` links that reference the source item (supported by STAC API implementations that index link targets).
+which may not always be practical. An alternative for forward discovery is to search for items whose `derived_from` links
+reference the source item. STAC API implementations whose backend supports indexing links can expose this as a queryable
+(e.g. for use with the Filter extension).
 
 ### Suggested Processing Levels
 
