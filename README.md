@@ -24,6 +24,17 @@ and therefore are shared across all items, it is recommended adding the fields t
 
 ## Fields
 
+The fields in the table below can be used in these parts of STAC documents:
+
+- [ ] Catalogs
+- [ ] Collections
+- [x] Item Properties (incl. Summaries in Collections)
+- [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections and Asset Templates)
+- [ ] Links
+- [ ] Bands
+- [x] [Providers](https://github.com/radiantearth/stac-spec/blob/master/commons/common-metadata.md#provider-object)
+  (for Collections, Item Properties and Assets, incl. Item Asset Definitions in Collections and Asset Templates)
+
 | Field Name              | Type                | Description |
 | ----------------------- | ------------------- | ----------- |
 | processing:expression   | [Expression Object](#expression-object) | An expression or processing chain that describes how the data has been processed. Alternatively, you can also link to a processing chain with the relation type `processing-expression` (see below). |
@@ -34,28 +45,25 @@ and therefore are shared across all items, it is recommended adding the fields t
 | processing:version      | string              | The version of the primary processing software or processing chain that produced the data. For example, this could be the processing baseline for the Sentinel missions. |
 | processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more applications or libraries that were involved during the production of the data for provenance purposes. |
 
-The fields in the table above can be used in these parts of STAC documents:
-- [ ] Catalogs
-- [ ] Collections
-- [x] [Collection Provider](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
-- [x] Item Properties (incl. Summaries in Collections)
-- [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
-- [ ] Links
-
 In more detail, the following restrictions apply:
 
 1. Items:
-   - The fields are usually placed in the properties. At least one field is required to be present.
-   - Additionally, STAC allows all fields to be used in the Asset Object.
+   - The fields are usually placed in the properties.
+   - The fields can also be used in the Asset Objects, e.g. if assets have been processed differently.
 
 2. Collections:
-   - The fields are usually placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#provider-object)
+   - The fields are usually placed in the Provider Objects (see below).
+   - The fields can also be used in `summaries`, Collection `assets` or Item asset definitions (`item_assets`).
+
+3. Providers:
+   - The fields can be placed in the [Provider Objects](https://github.com/radiantearth/stac-spec/blob/master/commons/common-metadata.md#provider-object)
      for the `providers` that have the role `producer` or `processor` assigned.
      They don't need to be provided for all providers of the respective role.
-   - The fields can also be used in `summaries`, Collection `assets` or Item asset definitions (`item_assets`).
-     Please note that the JSON Schema is not be able to validate the values of Collection summaries.
-    
+   - The `providers` field is part of the [STAC Common Metadata](https://github.com/radiantearth/stac-spec/blob/master/commons/common-metadata.md#provider)
+     and as such can be used in Collections, Item Properties and Assets (incl. Item Asset Definitions in Collections and Asset Templates).
+
 If the extension is given in the `stac_extensions` list, at least one of the fields must be specified in any of the given places listed above.
+Fields in Provider Objects only count towards this requirement if the provider has the role `producer` or `processor` assigned.
 
 ### Processing Date Time
 
