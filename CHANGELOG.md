@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -9,9 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Relation type `processing-validation`
+- The fields can be used in Asset Templates
+- The fields can be used in Provider Objects in Item Properties and Assets
+- The JSON Schema validates the fields in Collection summaries
 - Relation type `source_for` for forward provenance (inverse of `derived_from`)
 
 ### Changed
+
+- The fields are not required anymore
+- Updated examples to STAC 1.1.0
 
 ### Deprecated
 
@@ -41,7 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- The JSON Schema is more strict and should not have issues with missing required fields in Collections any longer [#3](https://github.com/stac-extensions/processing/issues/3), [#8](https://github.com/stac-extensions/processing/issues/8), [#16](https://github.com/stac-extensions/processing/issues/16)
+- The JSON Schema is more strict and should not have issues with missing required fields in Collections any longer
+  [#3](https://github.com/stac-extensions/processing/issues/3), [#8](https://github.com/stac-extensions/processing/issues/8), [#16](https://github.com/stac-extensions/processing/issues/16)
 
 ## [v1.0.0] - 2021-03-08
 

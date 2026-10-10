@@ -5,7 +5,8 @@
   "description": "STAC Processing Extension for STAC Items and STAC Collections.",
   "type": "object",
   "required": [
-    "stac_extensions"
+    "stac_extensions",
+    "type"
   ],
   "properties": {
     "stac_extensions": {
@@ -13,37 +14,43 @@
       "contains": {
         "const": "https://stac-extensions.github.io/processing/v1.2.0/schema.json"
       }
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Collection",
+        "Feature"
+      ]
+    },
+    "assets": {
+      "$comment": "This validates the fields in Item and Collection Assets, but does not require them.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/fieldsAndProviders"
+      }
+    },
+    "assetTemplates": {
+      "$comment": "This validates the fields in Asset Templates, but does not require them.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/fieldsAndProviders"
+      }
     }
   },
-  "anyOf": [
+  "oneOf": [
     {
       "$comment": "This is the schema for STAC Items.",
       "type": "object",
       "required": [
         "type",
-        "properties",
-        "assets"
+        "properties"
       ],
       "properties": {
         "type": {
           "const": "Feature"
         },
         "properties": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/require_any_field"
-            },
-            {
-              "$ref": "#/definitions/fields"
-            }
-          ]
-        },
-        "assets": {
-          "$comment": "This validates the fields in Item Assets, but does not require them.",
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/fields"
-          }
+          "$ref": "#/definitions/fieldsAndProviders"
         }
       }
     },
@@ -58,226 +65,200 @@
           "const": "Collection"
         },
         "providers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/fields"
-          }
+          "$ref": "#/definitions/providers"
+        },
+        "summaries": {
+          "$ref": "#/definitions/summaries"
         },
         "item_assets": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/fields"
-          }
-        },
-        "summaries": {
-          "$comment": "The values of summaries are not validated yet!"
-        },
-        "assets": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/fields"
-          }
-        }
-      },
-      "anyOf": [
-        {
-          "$comment": "Requires at least one provider to contain processing fields.",
-          "type": "object",
-          "required": [
-            "providers"
-          ],
-          "properties": {
-            "providers": {
-              "type": "array",
-              "contains": {
-                "type": "object",
-                "allOf": [
-                  {
-                    "type": "object",
-                    "required": [
-                      "roles"
-                    ],
-                    "properties": {
-                      "roles": {
-                        "type": "array",
-                        "contains": {
-                          "enum": [
-                            "producer",
-                            "processor"
-                          ]
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "$ref": "#/definitions/require_any_field"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        {
-          "$comment": "Requires at least one asset to contain processing fields.",
-          "type": "object",
-          "required": [
-            "assets"
-          ],
-          "properties": {
-            "assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "$ref": "#/definitions/require_any_field"
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "$comment": "Requires at least one item asset definition to contain processing fields.",
-          "type": "object",
-          "required": [
-            "item_assets"
-          ],
-          "properties": {
-            "item_assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "$ref": "#/definitions/require_any_field"
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "$comment": "Requires at least one summary to be a processing field.",
-          "required": [
-            "summaries"
-          ],
-          "properties": {
-            "summaries": {
-              "$ref": "#/definitions/require_any_field"
-            }
-          }
-        }
-      ]
-    }
-  ],
-  "definitions": {
-    "stac_extensions": {
-    },
-    "require_provider_role": {
-      "type": "object",
-      "required": [
-        "roles"
-      ],
-      "properties": {
-        "roles": {
-          "type": "array",
-          "contains": {
-            "enum": [
-              "producer",
-              "processor"
-            ]
+            "$ref": "#/definitions/fieldsAndProviders"
           }
         }
       }
+    }
+  ],
+  "definitions": {
+    "processing:expression": {
+      "title": "Processing Expression",
+      "type": "object",
+      "required": [
+        "format",
+        "expression"
+      ],
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "expression": {
+          "description": "Any data type, depending on the format chosen."
+        }
+      }
     },
-    "require_any_field": {
-      "anyOf": [
-        {"type": "object", "required": ["processing:expression"]},
-        {"type": "object", "required": ["processing:lineage"]},
-        {"type": "object", "required": ["processing:level"]},
-        {"type": "object", "required": ["processing:facility"]},
-        {"type": "object", "required": ["processing:software"]},
-        {"type": "object", "required": ["processing:version"]},
-        {"type": "object", "required": ["processing:datetime"]}
+    "processing:lineage": {
+      "title": "Processing Lineage Information",
+      "type": "string",
+      "examples": [
+        "Post Processing GRD"
+      ]
+    },
+    "processing:level": {
+      "title": "Processing Level",
+      "type": "string",
+      "examples": [
+        "RAW",
+        "L1",
+        "L1A",
+        "L1B",
+        "L1C",
+        "L2",
+        "L2A",
+        "L3",
+        "L4"
+      ]
+    },
+    "processing:facility": {
+      "title": "Processing Facility",
+      "type": "string",
+      "examples": [
+        "Copernicus S1 Core Ground Segment - DPA"
+      ]
+    },
+    "processing:version": {
+      "title": "Processing Version",
+      "type": "string",
+      "examples": [
+        "0.2.0"
+      ]
+    },
+    "processing:datetime": {
+      "title": "Processing Datetime",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "(\\+00:00|Z)$",
+      "examples": [
+        "2020-01-05T12:34:55Z"
+      ]
+    },
+    "processing:software": {
+      "title": "Processing Software Name / version",
+      "type": "object",
+      "patternProperties": {
+        ".{1,}": {
+          "type": "string"
+        }
+      },
+      "examples": [
+        {
+          "Sentinel-1 IPF": "002.71"
+        }
       ]
     },
     "fields": {
+      "$comment": "Don't require fields here as they would be required in all places where the fields are referenced.",
       "type": "object",
       "properties": {
         "processing:expression": {
-          "title": "Processing Expression",
-          "type": "object",
-          "required": [
-            "format",
-            "expression"
-          ],
+          "$ref": "#/definitions/processing:expression"
+        },
+        "processing:lineage": {
+          "$ref": "#/definitions/processing:lineage"
+        },
+        "processing:level": {
+          "$ref": "#/definitions/processing:level"
+        },
+        "processing:facility": {
+          "$ref": "#/definitions/processing:facility"
+        },
+        "processing:version": {
+          "$ref": "#/definitions/processing:version"
+        },
+        "processing:datetime": {
+          "$ref": "#/definitions/processing:datetime"
+        },
+        "processing:software": {
+          "$ref": "#/definitions/processing:software"
+        }
+      },
+      "patternProperties": {
+        "^(?!processing:)": {}
+      },
+      "additionalProperties": false
+    },
+    "providers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fields"
+      }
+    },
+    "fieldsAndProviders": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/fields"
+        },
+        {
           "properties": {
-            "format": {
-              "type": "string"
-            },
-            "expression": {
-              "description": "Any data type, depending on the format chosen."
+            "providers": {
+              "$ref": "#/definitions/providers"
             }
+          }
+        }
+      ]
+    },
+    "summaries": {
+      "$comment": "Summaries can be lists, ranges (only for processing:datetime) or JSON Schemas. Only lists and ranges are validated.",
+      "type": "object",
+      "properties": {
+        "processing:expression": {
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:expression"
           }
         },
         "processing:lineage": {
-          "title": "Processing Lineage Information",
-          "type": "string",
-          "examples": [
-            "Post Processing GRD"
-          ]
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:lineage"
+          }
         },
         "processing:level": {
-          "title": "Processing Level",
-          "type": "string",
-          "examples": [
-            "RAW",
-            "L1",
-            "L1A",
-            "L1B",
-            "L1C",
-            "L2",
-            "L2A",
-            "L3",
-            "L4"
-          ]
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:level"
+          }
         },
         "processing:facility": {
-          "title": "Processing Facility",
-          "type": "string",
-          "examples": [
-            "Copernicus S1 Core Ground Segment - DPA"
-          ]
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:facility"
+          }
         },
         "processing:version": {
-          "title": "Processing Version",
-          "type": "string",
-          "examples": [
-            "0.2.0"
-          ]
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:version"
+          }
         },
         "processing:datetime": {
-          "title": "Processing Datetime",
-          "type": "string",
-          "format": "date-time",
-          "pattern": "(\\+00:00|Z)$",
-          "examples": [
-            "2020-01-05T12:34:55Z"
-          ]
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:datetime"
+          },
+          "properties": {
+            "minimum": {
+              "$ref": "#/definitions/processing:datetime"
+            },
+            "maximum": {
+              "$ref": "#/definitions/processing:datetime"
+            }
+          }
         },
         "processing:software": {
-          "title": "Processing Software Name / version",
-          "type": "object",
-          "patternProperties": {
-            ".{1,}": {
-              "type": "string"
-            }
-          },
-          "examples": [
-            {
-              "Sentinel-1 IPF": "002.71"
-            }
-          ]
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:software"
+          }
         }
       },
       "patternProperties": {
