@@ -19,6 +19,7 @@ and therefore are shared across all items, it is recommended adding the fields t
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
   - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
+  - [Sentinel-2 Item example](examples/item-sentinel-2.json): Shows the datastrip identifier in a STAC Item
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
@@ -44,6 +45,7 @@ The fields in the table below can be used in these parts of STAC documents:
 | processing:datetime     | string              | Processing date and time of the corresponding data formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6), in UTC. |
 | processing:version      | string              | The version of the primary processing software or processing chain that produced the data. For example, this could be the processing baseline for the Sentinel missions. |
 | processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more applications or libraries that were involved during the production of the data for provenance purposes. |
+| processing:datastrip_id | string              | The identifier of the datastrip, i.e. the part of a datatake that the ground segment processed as one unit. See [Datastrip ID](#datastrip-id) for details. |
 
 In more detail, the following restrictions apply:
 
@@ -92,6 +94,29 @@ In Item Properties:
   For example, you could expose a simplified version of the `Pipfile.lock` (Python) or `package-lock.json` (NodeJS).
   If you need more information, you could also link to such files via the relation type `processing-software`.
 - `version` is usually not used in the context of processing and describes the version of the metadata.
+
+### Datastrip ID
+
+A datatake is one continuous acquisition by an instrument in one mode.
+Some ground segments don't process a datatake as a whole.
+Instead, they process parts of it independently, e.g. the parts that different ground stations received.
+Sentinel-2 calls such a part a *datastrip*, and Landsat 7 calls it a *subinterval*.
+`processing:datastrip_id` gives the identifier of the datastrip that the data was produced from.
+
+The value is an opaque string.
+Use the identifier as given by the provider and don't change its format.
+Some providers assign new datastrip identifiers for each processing level or processing run.
+Thus Items of the same acquisition at different processing levels may have different values.
+
+For the identifier of the datatake itself, use `datatake_id` from the
+[Instruments extension](https://github.com/stac-extensions/instruments).
+If the ground segment processes the datatake as a whole, don't provide `processing:datastrip_id`.
+Note that some providers (e.g. Airbus for Pléiades) use the term *data strip* for the whole acquisition.
+Such identifiers are datatake identifiers and should be provided in `datatake_id` instead.
+
+If the data of an Item comes from more than one datastrip, don't provide this field in the Item properties.
+Instead, provide it in the Assets if each Asset comes from a single datastrip.
+Collections should not summarize this field.
 
 ### Linking the Items
 

@@ -155,6 +155,14 @@
         }
       ]
     },
+    "processing:datastrip_id": {
+      "title": "Datastrip ID",
+      "type": "string",
+      "minLength": 1,
+      "examples": [
+        "S2A_OPER_MSI_L2A_DS_2APS_20250626T142217_S20250626T102649_N05.11"
+      ]
+    },
     "fields": {
       "$comment": "Don't require fields here as they would be required in all places where the fields are referenced.",
       "type": "object",
@@ -179,6 +187,9 @@
         },
         "processing:software": {
           "$ref": "#/definitions/processing:software"
+        },
+        "processing:datastrip_id": {
+          "$ref": "#/definitions/processing:datastrip_id"
         }
       },
       "patternProperties": {
@@ -258,6 +269,12 @@
           "type": ["array", "object"],
           "items": {
             "$ref": "#/definitions/processing:software"
+          }
+        },
+        "processing:datastrip_id": {
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/processing:datastrip_id"
           }
         }
       },
