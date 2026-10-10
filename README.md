@@ -109,6 +109,14 @@ Note that `derived_from` can point back to different types of metadata, which ar
 - `text/html` &rarr; website
 - Any other media type (e.g. `application/xml`) &rarr; other metadata (e.g. XML)
 
+For **forward provenance** (going from a source item to the items derived from it), the `source_for` relation type can be used.
+It is the inverse of `derived_from`: a source item links forward to the items produced from it.
+As for `derived_from`, the media type (`type`) distinguishes the different types of metadata that `source_for` can point to.
+Note that maintaining `source_for` links requires updating the source item every time a new derived item is created,
+which may not always be practical. An alternative for forward discovery is to search for items whose `derived_from` links
+reference the source item. STAC API implementations whose backend supports indexing links can expose this as a queryable
+(e.g. for use with the Filter extension).
+
 ### Suggested Processing Levels
 
 The `processing:level` is the name that is commonly used to refer to that processing level properties.
@@ -151,6 +159,7 @@ The following types should be used as applicable `rel` types in the
 | Type                  | Description                                                                       |
 | --------------------- | --------------------------------------------------------------------------------- |
 | derived_from          | URL to a STAC Item that was used as input data in the creation of this Item.      |
+| source_for            | URL to a STAC Item that was derived from this Item (forward provenance, inverse of `derived_from`). |
 | processing-expression | A processing chain (or script) that describes how the data has been processed.    |
 | processing-execution  | URL to any resource representing the processing execution (e.g. OGC Process API). |
 | processing-software   | URL to any resource that identifies the software and versions used for processing the data, e.g. a `Pipfile.lock` (Python) or `package-lock.json` (NodeJS). |
