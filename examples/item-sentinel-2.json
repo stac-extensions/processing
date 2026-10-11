@@ -1,0 +1,64 @@
+{
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json"
+  ],
+  "type": "Feature",
+  "id": "S2A_MSIL2A_20250626T101701_R065_T32UQU_20250626T142217",
+  "bbox": [
+    11.667,
+    47.72,
+    12.586,
+    48.721
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          11.667,
+          47.72
+        ],
+        [
+          12.586,
+          47.72
+        ],
+        [
+          12.586,
+          48.721
+        ],
+        [
+          11.667,
+          48.721
+        ],
+        [
+          11.667,
+          47.72
+        ]
+      ]
+    ]
+  },
+  "properties": {
+    "datetime": "2025-06-26T10:17:01.024Z",
+    "constellation": "sentinel-2",
+    "platform": "sentinel-2a",
+    "instruments": [
+      "msi"
+    ],
+    "processing:level": "L2",
+    "processing:version": "05.11",
+    "processing:datetime": "2025-06-26T14:22:17Z",
+    "processing:datastrip_id": "S2A_OPER_MSI_L2A_DS_2APS_20250626T142217_S20250626T102649_N05.11"
+  },
+  "links": [
+    {
+      "href": "https://example.com/examples/item-sentinel-2.json",
+      "rel": "self"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://example.com/examples/file.xyz"
+    }
+  }
+}

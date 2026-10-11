@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The fields can be used in Provider Objects in Item Properties and Assets
 - The JSON Schema validates the fields in Collection summaries
 - Relation type `source_for` for forward provenance (inverse of `derived_from`)
+- `processing:datastrip_id` to identify the part of a datatake that the ground segment processed as one unit
 
 ### Changed
 
