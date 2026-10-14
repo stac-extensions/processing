@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## [v1.3.0] - 2026-10-14
+
+### Added
+
 - Relation type `processing-validation`
 - The fields can be used in Asset Templates
 - The fields can be used in Provider Objects in Item Properties and Assets
@@ -20,12 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The fields are not required anymore
 - Updated examples to STAC 1.1.0
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 ## [v1.2.0] - 2024-05-09
 
@@ -60,7 +66,8 @@ Initial independent release, see [previous history](https://github.com/radiantea
 
 - `processing:lineage` now allows CommonMark for rich-text representation ([#950](https://github.com/radiantearth/stac-spec/issues/950))
 
-[Unreleased]: <https://github.com/stac-extensions/processing/compare/v1.2.0...HEAD>
+[Unreleased]: <https://github.com/stac-extensions/processing/compare/v1.3.0...HEAD>
+[v1.3.0]: <https://github.com/stac-extensions/processing/compare/v1.2.0...v1.3.0>
 [v1.2.0]: <https://github.com/stac-extensions/processing/compare/v1.2.0...v1.1.0>
 [v1.1.0]: <https://github.com/stac-extensions/processing/compare/v1.1.0...v1.0.0>
 [v1.0.0]: <https://github.com/stac-extensions/processing/tree/v1.0.0>
