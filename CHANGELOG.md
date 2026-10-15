@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Recommended `processing:expression` with `format: results` for literal data processing results.
+
 ### Changed
 
 ### Deprecated

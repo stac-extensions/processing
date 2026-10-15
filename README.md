@@ -172,6 +172,26 @@ Potential expression formats with examples:
 | `gdal-calc` | string | A [`gdal_calc.py`](https://gdal.org/programs/gdal_calc.html) expression based on numpy syntax. | `A*logical_or(A<=177,A>=185)` |
 | `openeo`    | object | [openEO process](https://openeo.org/documentation/1.0/developers/api/reference.html#section/Processes) | [Example](https://raw.githubusercontent.com/Open-EO/openeo-processes/1.2.0/normalized_difference.json) |
 | `rio-calc`  | string | A [rio-calc](https://rasterio.readthedocs.io/en/latest/topics/calc.html) (RasterIO) expression | `(b4-b1)/(b4+b1)` |
+| `results`   | [Literal](#literal-result) \| Map<string, \*> | A literal data processing results. | `{"mean": 0.5, "stddev": 0.1}` |
+
+#### Literal Result
+
+Represents a literal data processing result.
+The value can be any literal value (e.g., a `number`, `string`, `boolean`, or `null`).
+If an `object` or `array` value is needed, it must be provided in a nested object with result identifiers to avoid ambiguity.
+
+> [!NOTE]
+> It is typically not recommended to have `object` or `array` unless they are very small values (e.g.: a bbox `[xmin, ymin, xmax, ymax]`).
+> Bigger results should instead be indicated in Assets via `href` and corresponding `type` to better interpret their contents.
+
+When a result is provided directly (e.g., `processing:expression: {format: results, expression: 3.1416}`), this should indicate that
+the referenced `processing-expression`, `processing-execution`, or `processing-software` produced a nameless literal result.
+For example, a CLI script that prints a value with no specific identifier.
+
+When provided as a map (e.g., `processing:expression: {format: results, expression: {"mean": 0.5, "stddev": 0.1}}`),
+this should indicate that the respective named-outputs produced the provided literal values.
+Those names would typically be indicated in an *OGC API - Processes* or *openEO* process description, or some other kind
+of metadata definition, obtained from one of the `processing-*` [Relation Type](#relation-types) link.
 
 ## Relation types
 
@@ -183,7 +203,7 @@ The following types should be used as applicable `rel` types in the
 | derived_from          | URL to a STAC Item that was used as input data in the creation of this Item.      |
 | source_for            | URL to a STAC Item that was derived from this Item (forward provenance, inverse of `derived_from`). |
 | processing-expression | A processing chain (or script) that describes how the data has been processed.    |
-| processing-execution  | URL to any resource representing the processing execution (e.g. OGC Process API). |
+| processing-execution  | URL to any resource representing the processing execution (e.g. *OGC API - Processes*). |
 | processing-software   | URL to any resource that identifies the software and versions used for processing the data, e.g. a `Pipfile.lock` (Python) or `package-lock.json` (NodeJS). |
 | processing-validation | URL to any kind of validation that has been applied after processing, e.g. a validation report or a script used for validation. |
 
@@ -197,10 +217,10 @@ for running tests are copied here for convenience.
 
 ### Running tests
 
-The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid. 
+The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid.
 To run tests locally, you'll need `npm`, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
 
-First you'll need to install everything with npm once. Just navigate to the root of this repository and on 
+First you'll need to install everything with npm once. Just navigate to the root of this repository and on
 your command line run:
 ```bash
 npm install
