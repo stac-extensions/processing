@@ -190,7 +190,7 @@ For example, a CLI script that prints a value with no specific identifier.
 
 When provided as a map (e.g., `processing:expression: {format: results, expression: {"mean": 0.5, "stddev": 0.1}}`),
 this should indicate that the respective named-outputs produced the provided literal values.
-Those names would typically be indicated in an _OGC API - Processes_ or _openEO_ process description, or some other kind
+Those names would typically be indicated in an *OGC API - Processes* or *openEO* process description, or some other kind
 of metadata definition, obtained from one of the `processing-*` [Relation Type](#relation-types) link.
 
 ## Relation types
@@ -203,7 +203,7 @@ The following types should be used as applicable `rel` types in the
 | derived_from          | URL to a STAC Item that was used as input data in the creation of this Item.      |
 | source_for            | URL to a STAC Item that was derived from this Item (forward provenance, inverse of `derived_from`). |
 | processing-expression | A processing chain (or script) that describes how the data has been processed.    |
-| processing-execution  | URL to any resource representing the processing execution (e.g. _OGC API - Processes_). |
+| processing-execution  | URL to any resource representing the processing execution (e.g. *OGC API - Processes*). |
 | processing-software   | URL to any resource that identifies the software and versions used for processing the data, e.g. a `Pipfile.lock` (Python) or `package-lock.json` (NodeJS). |
 | processing-validation | URL to any kind of validation that has been applied after processing, e.g. a validation report or a script used for validation. |
 
