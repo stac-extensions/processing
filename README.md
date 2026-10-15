@@ -180,7 +180,7 @@ Represents a literal data processing result.
 The value can be any literal value (e.g., a `number`, `string`, `boolean`, or `null`).
 If an `object` or `array` value is needed, it must be provided in a nested object with result identifiers to avoid ambiguity.
 
-> ![NOTE]
+> [!NOTE]
 > It is typically not recommended to have `object` or `array` unless they are very small values (e.g.: a bbox `[xmin, ymin, xmax, ymax]`).
 > Bigger results should instead be indicated in Assets via `href` and corresponding `type` to better interpret their contents.
 
