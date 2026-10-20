@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- New `parameters` field under `processing:expression` to provide a mapping of named input values employed.
+- Asset roles `processing-input`, `processing-output`, `processing-parameters` and `processing-results`.
+- Recommendation to employ `profile` in Asset using the above roles and examples for common applications.
+
 ### Changed
 
 ### Deprecated
