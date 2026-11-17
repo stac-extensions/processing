@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Clarified the scope of the extension in the README (lineage and traceability of the data, not the description of applications or jobs).
+  No change to the fields, the relation types or the JSON Schema.
+- Added `AGENTS.md` with guidance for AI coding agents that contribute to this repository.
+
 ### Deprecated
 
 ### Removed
