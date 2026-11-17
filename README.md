@@ -197,10 +197,8 @@ for running tests are copied here for convenience.
 
 ### Changes to the extension
 
-This extension has the maturity classification *Stable*.
-All changes to the fields, the relation types or the JSON Schema require a pull request,
-a review by the extension owner and at least one other member of the STAC community, and a new version number.
-Breaking changes require a new major version.
+This extension has the maturity classification *Stable*. Changes follow the rules for this classification in the
+[STAC extension maturity](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity) document.
 
 ### Running tests
 
