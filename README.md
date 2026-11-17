@@ -4,7 +4,7 @@
 - **Identifier:** <https://stac-extensions.github.io/processing/v1.3.0/schema.json>
 - **Field Name Prefix:** processing
 - **Scope:** Item, Collection
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Candidate
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Stable
 - **Owner**: @emmanuelmathot
 
 Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced.
@@ -194,6 +194,13 @@ All contributions are subject to the
 For contributions, please follow the
 [STAC specification contributing guide](https://github.com/radiantearth/stac-spec/blob/master/CONTRIBUTING.md) Instructions
 for running tests are copied here for convenience.
+
+### Changes to the extension
+
+This extension has the maturity classification *Stable*.
+All changes to the fields, the relation types or the JSON Schema require a pull request,
+a review by the extension owner and at least one other member of the STAC community, and a new version number.
+Breaking changes require a new major version.
 
 ### Running tests
 
