@@ -7,11 +7,17 @@
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Candidate
 - **Owner**: @emmanuelmathot
 
-Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced.
-Overall, it helps to increase traceability and search among processing levels and multiple algorithm versions.
+The Processing extension records the processing lineage of a data product:
+where the data comes from, who processed it, when, with which software version, and to which processing level.
+Its purpose is traceability. A data user can follow a product back through its processing chain (e.g. L0 &rarr; L1 &rarr; L2),
+tell apart products from different processing baselines,
+and search with the qualifiers that are in common use in Earth Observation, such as the processing level.
 
-Often, data items are the result of one or more waterfall processing pipeline. Tracing information such as the processing facility,
+Often, data items are the result of one or more waterfall processing pipelines. Tracing information such as the processing facility,
 the algorithm version or the processing date helps in the data version management.
+
+The extension describes the data, not the processor.
+It does not describe an application, a workflow or a job as a resource of its own. See [Scope](#scope) for the boundary.
 
 This extension applies to STAC Items and STAC Collections. As these processing information are often closely bound to the Collection level
 and therefore are shared across all items, it is recommended adding the fields to the corresponding STAC Collection.
@@ -22,6 +28,35 @@ and therefore are shared across all items, it is recommended adding the fields t
   - [Sentinel-2 Item example](examples/item-sentinel-2.json): Shows the datastrip identifier in a STAC Item
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
+
+## Scope
+
+All metadata in this extension answers one question: **what happened to this data before it reached the user?**
+
+### In scope
+
+- **Qualifiers** that identify the processing state of the data and that users search and filter on:
+  `processing:level`, `processing:version`, `processing:facility`, `processing:datetime`, `processing:datastrip_id`.
+- **Lineage**, i.e. the chain of products that the data comes from:
+  `processing:lineage` and the relation types `derived_from` and `source_for`.
+- **A record of the processing that was applied**, as far as it helps to understand and to trace the data:
+  `processing:software`, `processing:expression` and the relation types `processing-expression`, `processing-execution`,
+  `processing-software` and `processing-validation`.
+
+### Out of scope
+
+- **The description of an application, process or workflow as a resource of its own**:
+  its interface, its input and output definitions, its entry points or its runtime environment.
+  Use the [Application extension](https://github.com/stac-extensions/application),
+  the [MLM extension](https://github.com/stac-extensions/mlm) for machine learning models,
+  or a dedicated standard such as *OGC API - Processes* or CWL.
+- **A complete description of a job that a client can submit or run again**, e.g. the job request and the job results documents.
+  This extension can link to such resources with the relation type `processing-execution`, but it does not define their content.
+- **Processing that can be applied to the data in the future**. The extension records only processing that has occurred.
+
+The metadata in this extension helps reproducibility, but it does not guarantee it.
+For example, a `processing:expression` records the transformation that was applied.
+It is not a promise that a client can execute it.
 
 ## Fields
 
@@ -191,29 +226,4 @@ The following types should be used as applicable `rel` types in the
 
 All contributions are subject to the
 [STAC Specification Code of Conduct](https://github.com/radiantearth/stac-spec/blob/master/CODE_OF_CONDUCT.md).
-For contributions, please follow the
-[STAC specification contributing guide](https://github.com/radiantearth/stac-spec/blob/master/CONTRIBUTING.md) Instructions
-for running tests are copied here for convenience.
-
-### Running tests
-
-The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid. 
-To run tests locally, you'll need `npm`, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
-
-First you'll need to install everything with npm once. Just navigate to the root of this repository and on 
-your command line run:
-```bash
-npm install
-```
-
-Then to check markdown formatting and test the examples against the JSON schema, you can run:
-```bash
-npm test
-```
-
-This will spit out the same texts that you see online, and you can then go and fix your markdown or examples.
-
-If the tests reveal formatting problems with the examples, you can fix them with:
-```bash
-npm run format-examples
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the rules for changes and for the instructions to run the tests.
